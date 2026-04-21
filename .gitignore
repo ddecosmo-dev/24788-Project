@@ -1,3 +1,10 @@
+# Ignore COCO dataset downloads and extracted image files, but keep the helper scripts and annotations.
+/coco-dataset/val2017/
+/coco-dataset/val2014/
+/coco-dataset/annotations/
+/coco-dataset/*.zip
+/coco-dataset/zip-files/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[codz]
