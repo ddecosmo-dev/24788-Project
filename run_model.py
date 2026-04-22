@@ -2,7 +2,7 @@ import huggingface_hub
 import torch
 from transformers import AutoModelForImageTextToText, AutoProcessor, AutoConfig
 import os
-from configs import MODEL_NAME, DATASET_PATH, ANNOTATIONS_PATH, RESULTS_PATH, MAX_LENGTH
+from configs import MODEL_NAME, DATASET_PATH, ANNOTATIONS_PATH, RESULTS_PATH, MAX_LENGTH, PROMPT
 import json
 from PIL import Image
 from pprint import pprint
@@ -127,9 +127,8 @@ def main():
     # Iterate through the dataset and generate captions
     for file in loop:
         image = load_image(os.path.join(DATASET_PATH, file))
-        prompt = "Describe the image in detail."
 
-        generated_text = generate_text(model, processor, image, prompt, MAX_LENGTH)
+        generated_text = generate_text(model, processor, image, PROMPT, MAX_LENGTH)
         # print("Generated Text:", generated_text)
 
         captions = get_captions(file, filename_to_id, id_to_captions)

@@ -1,5 +1,5 @@
 torch
-transformers
+transformers==4.57.1
 huggingface_hub
 Pillow
 accelerate
