@@ -1,8 +1,8 @@
 import huggingface_hub
 import torch
-from transformers import AutoModelForImageTextToText, AutoProcessor, AutoConfig
+from transformers import AutoModelForImageTextToText, AutoModelForCausalLM, AutoProcessor, AutoConfig
 import os
-from configs import MODEL_NAME, DATASET_PATH, ANNOTATIONS_PATH, RESULTS_PATH, MAX_LENGTH, PROMPT
+from configs import MODEL_NAME, DATASET_PATH, ANNOTATIONS_PATH, RESULTS_PATH, MAX_NEW_TOKENS, PROMPT
 import json
 from PIL import Image
 from pprint import pprint
@@ -53,13 +53,22 @@ def get_captions(filename, filename_to_id, id_to_captions):
 # ----- Model Loading ------ #
 def load_model(model_name):
     # Load the tokenizer and model from Hugging Face Hub
-
-    model = AutoModelForImageTextToText.from_pretrained(
-        model_name,
-        trust_remote_code=True, 
-        dtype="auto", 
-        device_map="auto"
-    )
+    if MODEL_NAME == "allenai/Molmo2-4B":
+        model = AutoModelForImageTextToText.from_pretrained(
+            model_name,
+            trust_remote_code=True, 
+            dtype="auto", 
+            device_map="auto"
+        )
+    elif MODEL_NAME == "google/gemma-4-E4B-it":
+        model = AutoModelForCausalLM.from_pretrained(
+            model_name,
+            trust_remote_code=True,
+            dtype="auto",
+            device_map="auto"
+        )
+    else:
+        raise ValueError(f"Unsupported model name: {MODEL_NAME}")
 
     processor = AutoProcessor.from_pretrained(
         model_name, 
@@ -73,35 +82,63 @@ def load_model(model_name):
 # ----- Text Generation ------#
 def generate_text(model, processor, image, prompt, max_length=50):
     # Process the image and prompt
-    messages = [
-        {
-            "role": "user",
-            "content": [
-                dict(type="text", text=prompt),
-                dict(type="image", image=image),
-            ],
-        }
-    ]
+    if MODEL_NAME == "allenai/Molmo2-4B":
+        messages = [
+            {
+                "role": "user",
+                "content": [
+                    dict(type="text", text=prompt),
+                    dict(type="image", image=image),
+                ],
+            }
+        ]
 
-    inputs = processor.apply_chat_template(
-        messages,
-        tokenize=True,
-        add_generation_prompt=True,
-        return_tensors="pt",
-        return_dict=True,
-    )
-    # inputs = processor(image=image, text=prompt, return_tensors="pt").to(model.device)
-    inputs = {k: v.to(model.device) for k, v in inputs.items()}
+        inputs = processor.apply_chat_template(
+            messages,
+            tokenize=True,
+            add_generation_prompt=True,
+            return_tensors="pt",
+            return_dict=True,
+        )
 
-    # Generate text
-    with torch.no_grad():
-        generated_ids = model.generate(**inputs, max_new_tokens=max_length)
-    
-    # Decode the generated text
-    # generated_text = processor.decode(generated_ids[0], skip_special_tokens=True)
-    generated_tokens = generated_ids[0, inputs['input_ids'].size(1):]
-    generated_text = processor.tokenizer.decode(generated_tokens, skip_special_tokens=True)
-    
+        inputs = {k: v.to(model.device) for k, v in inputs.items()}
+
+        # Generate text
+        with torch.no_grad():
+            generated_ids = model.generate(**inputs, do_sample=False, max_new_tokens=max_length)
+        
+        # Decode the generated text
+        generated_tokens = generated_ids[0, inputs['input_ids'].size(1):]
+        generated_text = processor.tokenizer.decode(generated_tokens, skip_special_tokens=True)
+
+    elif MODEL_NAME == "google/gemma-4-E4B-it":
+        messages = [
+            {
+                "role": "user", 
+                "content": [
+                    {"type": "image", "url": image},
+                    {"type": "text", "text": prompt}
+                ]
+            }
+        ]
+
+        # Process input
+        inputs = processor.apply_chat_template(
+            messages, 
+            tokenize=True, 
+            add_generation_prompt=True, 
+            return_tensors="pt",
+            return_dict=True
+        ).to(model.device)
+        input_len = inputs["input_ids"].shape[-1]
+
+        # Generate output
+        with torch.no_grad():
+            generated_ids = model.generate(**inputs, do_sample=False, max_new_tokens=MAX_NEW_TOKENS)
+        
+        generated_text = processor.decode(generated_ids[0][input_len:], skip_special_tokens=False)
+
+        
     return generated_text
 
 # ----- Save Results as JSON ----- #
@@ -128,7 +165,7 @@ def main():
     for file in loop:
         image = load_image(os.path.join(DATASET_PATH, file))
 
-        generated_text = generate_text(model, processor, image, PROMPT, MAX_LENGTH)
+        generated_text = generate_text(model, processor, image, PROMPT, MAX_NEW_TOKENS)
         # print("Generated Text:", generated_text)
 
         captions = get_captions(file, filename_to_id, id_to_captions)
@@ -138,7 +175,7 @@ def main():
             "generated_text": generated_text,
             "captions": captions
         }
-
+        save_results(results, file_path=RESULTS_PATH)
         loop.set_postfix({"image": file})
 
     # Save the results to a JSON file
