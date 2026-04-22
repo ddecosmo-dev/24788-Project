@@ -1,4 +1,4 @@
-MODEL_NAME = "google/gemma-4-E4B-it" # "google/gemma-4-E4B" "allenai/Molmo2-4B"
+MODEL_NAME = "google/gemma-4-E4B-it" # "google/gemma-4-E4B-it" "allenai/Molmo2-4B"
 DATASET_PATH = "coco-dataset/val2017"
 ANNOTATIONS_PATH = "coco-dataset/annotations/captions_val2017.json"
 RESULTS_PATH = "results/" + MODEL_NAME.split("/")[-1] + "_results.json"

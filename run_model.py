@@ -175,7 +175,7 @@ def main():
             "generated_text": generated_text,
             "captions": captions
         }
-        save_results(results, file_path=RESULTS_PATH)
+
         loop.set_postfix({"image": file})
 
     # Save the results to a JSON file
