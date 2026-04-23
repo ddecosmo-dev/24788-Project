@@ -31,13 +31,13 @@ Could also be done for ablation study as images degrade.
 **Setup**
 - [x] Inspect COCO dataset
 - [x] Identify models, Gemma E4B and Molmo 4B
-- [ ] Generate scripts or notebooks to create captions for images
+- [x] Generate scripts or notebooks to create captions for images
 - [ ] Do some basic prompt engineering and testing to ensure captions are consitent with desired results in COCO
 - [ ] Generate script for metrics, mainly SPICE and CIDEr
 
 **Initial Testing**
 - [ ] Fine tune scripts and prompting techniques for Gemma and Molmo
-- [ ] Run inference on both models with full set of images
+- [x] Run inference on both models with full set of images
 - [ ] Find and compare base metrics for images
 
 **Ablation Study**
