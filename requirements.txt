@@ -1,0 +1,8 @@
+torch
+transformers==4.57.1
+huggingface_hub
+Pillow
+accelerate
+tqdm
+einops
+torchvision
