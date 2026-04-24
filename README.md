@@ -2,6 +2,18 @@
 
 Project comparing the performance of mulit-modal models in generating image captions. 
 
+### Env setup
+
+make virtual env
+
+install java for CIDER and SPICe metrics 
+
+```sudo apt install openjdk-8-jre-headless```
+
+```java -version```
+
+Should be openjdkversion 1.8.0
+
 
 ### COCO install
 Main folder is available, needs to be populated on device. 
@@ -22,6 +34,28 @@ wget http://images.cocodataset.org/annotations/annotations_trainval2014.zip
 
 unzip once downloaded 
 
+
+### running models
+
+info about run model
+
+
+#### Prompt testing 
+
+talk about prompt testing notebook
+
+### Metrics
+
+model-metrics.py saves CIDEr and SPICE values in a json file
+
+``` python model-metrics.py --json_path model-results/gemma-4-E4B-it_results_.json --model gemma  --test COCO_val ```
+
+using metrics notebook
+
+
+### ablation study 
+
+
 ### Tasks
 **NOTE!**
 During testing and inference, we should randomly choose some images to compare the outputs and metrics of both models. To both visually and textually show how they caption images differently in the report. 
@@ -32,7 +66,7 @@ Could also be done for ablation study as images degrade.
 - [x] Inspect COCO dataset
 - [x] Identify models, Gemma E4B and Molmo 4B
 - [x] Generate scripts or notebooks to create captions for images
-- [ ] Do some basic prompt engineering and testing to ensure captions are consitent with desired results in COCO
+- [ ] Do some basic prompt engineering and testing to ensure captions are consitent with desired results in COCO (Check)
 - [ ] Generate script for metrics, mainly SPICE and CIDEr
 
 **Initial Testing**

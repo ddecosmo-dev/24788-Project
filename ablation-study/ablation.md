@@ -23,3 +23,7 @@ Saves with a relevant label, coco2017_10_blur or something
 Makes calls to data easier 
 
 --------------
+
+Other ablation options. 
+
+jpeg compression / artifacting 
