@@ -1,7 +1,7 @@
 import cv2 as cv
 import numpy as np
 import os
-from model_configd import DATASET_PATH
+from model_configs import DATASET_PATH
 
 # ----- Configs ----- #
 ABLATION_TYPE = "motion_blur" # or "gaussian_noise"
