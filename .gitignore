@@ -9,6 +9,7 @@ data/coco-dataset/annotations/
 
 # Ignore any data inside ablation-datasets
 data/ablation-datasets/*
+!data/ablation-datasets/.gitkeep
 *.zip
 *.tar.gz
 
