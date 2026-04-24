@@ -55,6 +55,11 @@ using metrics notebook
 
 ### ablation study 
 
+discuss how to make ablation study datasets
+
+discuss how to run models on ablation datasets
+
+discuss how to use the ablation analysis notebook
 
 ### Tasks
 **NOTE!**

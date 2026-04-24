@@ -51,7 +51,11 @@ def main():
 
     # 4. Prepare CSV Output Name
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-    output_filename = f"{args.model}_{args.test}_{timestamp}.csv"
+    
+    # Force the output to go to your new metrics-results folder
+    output_dir = "results/metrics-results"
+    os.makedirs(output_dir, exist_ok=True) # Creates the folder if it doesn't exist
+    output_filename = os.path.join(output_dir, f"{args.model}_{args.test}_{timestamp}.csv")
     
     # 5. Export to CSV
     image_ids = list(gts.keys())
