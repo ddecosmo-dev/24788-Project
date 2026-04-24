@@ -46,6 +46,20 @@ python src/coco-tests/test-random-image-caption.py \
   --count 5
 ```
 
+### Generating datasets with motion blur (ablation study)
+
+# Example Bash Command for three levels of severity
+
+To generate ablation data, in this case motion blur, the ```generate_motion_blur.py``` file can be called with flags to generate different levels of blue 
+
+**NOTE:** The kernel size for motion blur should be odd.
+
+```python src/generate_motion_blur.py --input_dir data/coco-dataset/val2017 --output_dir data/ablation-datasets/blur_low --kernel_size 7```
+
+```python src/generate_motion_blur.py --input_dir data/coco-dataset/val2017 --output_dir data/ablation-datasets/blur_med --kernel_size 15```
+
+```python src/generate_motion_blur.py --input_dir data/coco-dataset/val2017 --output_dir data/ablation-datasets/blur_high --kernel_size 31```
+
 ## Importing `src` modules from notebooks
 
 When you work in `/notebooks`, add `../src` to `sys.path` before importing.

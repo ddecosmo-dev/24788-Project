@@ -1,9 +1,20 @@
+# --- Core Model Dependencies ---
 torch
 transformers==4.57.1
 huggingface_hub
-Pillow
-accelerate
+pillow
 tqdm
-einops
-torchvision
+
+# --- Evaluation Metrics ---
 pycocoevalcap
+
+# --- Data Ablation & Processing ---
+albumentations
+opencv-python
+numpy
+
+# --- Analysis & Visualization ---
+pandas
+matplotlib
+seaborn
+ipykernel
