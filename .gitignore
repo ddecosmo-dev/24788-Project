@@ -1,9 +1,21 @@
 # Ignore COCO dataset downloads and extracted image files, but keep the helper scripts and annotations.
-/coco-dataset/val2017/
-/coco-dataset/val2014/
-/coco-dataset/annotations/
-/coco-dataset/*.zip
-/coco-dataset/zip-files/
+# --- Virtual Environment ---
+.venv/
+__pycache__/
+
+# --- Data (Ignore heavy files, keep folder structure possibilities) ---
+data/coco-dataset/val2017/
+data/coco-dataset/annotations/
+
+# Ignore any data inside ablation-datasets
+data/ablation-datasets/*
+!data/ablation-datasets/.gitkeep
+*.zip
+*.tar.gz
+
+#keep results for now, could be good to add to LFS or ignore later
+!results/metrics-results/
+!results/model-results/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

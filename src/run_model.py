@@ -2,11 +2,22 @@ import huggingface_hub
 import torch
 from transformers import AutoModelForImageTextToText, AutoModelForCausalLM, AutoProcessor, AutoConfig
 import os
-from configs import MODEL_NAME, DATASET_PATH, ANNOTATIONS_PATH, RESULTS_PATH, MAX_NEW_TOKENS, PROMPT
+import sys
+from src.configs import MODEL_NAME, DATASET_PATH, ANNOTATIONS_PATH, RESULTS_PATH, MAX_NEW_TOKENS, PROMPT
 import json
 from PIL import Image
 from pprint import pprint
 from tqdm import tqdm
+
+# Ensure that root-level imports work when this script is run from src/
+ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+if ROOT_DIR not in sys.path:
+    sys.path.insert(0, ROOT_DIR)
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+DATASET_PATH = os.path.normpath(os.path.join(BASE_DIR, DATASET_PATH))
+ANNOTATIONS_PATH = os.path.normpath(os.path.join(BASE_DIR, ANNOTATIONS_PATH))
+RESULTS_PATH = os.path.normpath(os.path.join(BASE_DIR, RESULTS_PATH))
 
 """
 
@@ -142,7 +153,10 @@ def generate_text(model, processor, image, prompt, max_length=50):
     return generated_text
 
 # ----- Save Results as JSON ----- #
-def save_results(results, file_path="results/results.json", suffix=""):
+def save_results(results, file_path="../results/results.json", suffix=""):
+    if not os.path.isabs(file_path):
+        file_path = os.path.normpath(os.path.join(os.path.dirname(__file__), file_path))
+
     os.makedirs(os.path.dirname(file_path), exist_ok=True)
 
     full_path = file_path.replace(".json", f"_{suffix}.json")
