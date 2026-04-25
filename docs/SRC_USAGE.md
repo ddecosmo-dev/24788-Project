@@ -55,11 +55,26 @@ To generate ablation data, in this case motion blur, the ```generate_motion_blur
 
 **NOTE:** The kernel size for motion blur should be odd.
 
-```python src/generate_motion_blur.py --input_dir data/coco-dataset/val2017 --output_dir data/ablation-datasets/blur_low --kernel_size 7```
+```python src/create-ablation-data.py \
+--input_dir data/coco-dataset/val2017 \
+--output_dir data/ablation-datasets/k7 \
+--type motion_blur \
+--kernel_size 7 \
+  #only use for testing, for full test omit 
+--num_images 50 \
+--seed 42
+```
 
-```python src/generate_motion_blur.py --input_dir data/coco-dataset/val2017 --output_dir data/ablation-datasets/blur_med --kernel_size 15```
+```python src/create-ablation-data.py \
+--input_dir data/coco-dataset/val2017 \
+--output_dir data/ablation-datasets/noise15 \
+--type gaussian_noise \
+--noise_std 15 \
+--num_images 5 \
+--seed 42
+```
 
-```python src/generate_motion_blur.py --input_dir data/coco-dataset/val2017 --output_dir data/ablation-datasets/blur_high --kernel_size 31```
+
 
 ## Importing `src` modules from notebooks
 

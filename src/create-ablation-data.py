@@ -35,9 +35,11 @@ def main():
     parser.add_argument('--noise_std', type=float, default=25.0, 
                         help="Standard deviation for Gaussian noise")
 
-    # Sampling Argument for testing 
+    # Sampling Arguments
     parser.add_argument('--num_images', type=int, default=None,
                         help="Number of images to randomly sample and process. If not set, processes all.")
+    parser.add_argument('--seed', type=int, default=None,
+                        help="Random seed for reproducible sampling. Only used if --num_images is set.")
 
     args = parser.parse_args()
 
@@ -50,21 +52,29 @@ def main():
 
     os.makedirs(args.output_dir, exist_ok=True)
 
-    # 2. Setup Motion Blur Transform (Random Angle)
-    # Uses albumentations to randomize the angle (0-360) for every image.
+    # 2. Setup Motion Blur Transform
     blur_transform = A.Compose([
         A.MotionBlur(blur_limit=(args.kernel_size, args.kernel_size), allow_shifted=True, p=1.0)
     ])
 
-    # 3. Identify and Sample Images
+    # 3. Identify, Sort, and Sample Images
     image_files = [f for f in os.listdir(args.input_dir) if f.lower().endswith(('.png', '.jpg', '.jpeg'))]
+    
+    # CRITICAL: Sort files so the list is identical every time before sampling
+    image_files.sort() 
     
     # Apply Sampling Logic
     if args.num_images is not None:
         if args.num_images >= len(image_files):
             print(f"Note: --num_images ({args.num_images}) is >= available images ({len(image_files)}). Using all.")
         else:
-            print(f"Sampling {args.num_images} images randomly from {len(image_files)}...")
+            # Apply seed for reproducibility
+            if args.seed is not None:
+                random.seed(args.seed)
+                print(f"Sampling {args.num_images} images with seed {args.seed}...")
+            else:
+                print(f"Sampling {args.num_images} images randomly...")
+            
             image_files = random.sample(image_files, args.num_images)
 
     # 4. Process Images
@@ -75,16 +85,14 @@ def main():
         if img is None: continue
 
         if args.type == 'motion_blur':
-            # Randomized angle blur
             processed = blur_transform(image=img)["image"]
         else:
-            # Gaussian shift per pixel
             processed = add_gaussian_noise(img, mean=args.noise_mean, stddev=args.noise_std)
 
-        # Save at 100 quality for high-fidelity ablation results
+        # Save at 100 quality
         cv2.imwrite(os.path.join(args.output_dir, filename), processed, [cv2.IMWRITE_JPEG_QUALITY, 100])
 
-    print(f"\nDone! Data saved to: {args.output_dir}")
+    print(f"\n Dataset saved to: {args.output_dir}")
 
 if __name__ == "__main__":
     main()

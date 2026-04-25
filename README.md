@@ -71,22 +71,34 @@ Could also be done for ablation study as images degrade.
 - [x] Inspect COCO dataset
 - [x] Identify models, Gemma E4B and Molmo 4B
 - [x] Generate scripts or notebooks to create captions for images
-- [ ] Do some basic prompt engineering and testing to ensure captions are consitent with desired results in COCO (Check)
+- [x] Do some basic prompt engineering and testing to ensure captions are consitent with desired results in COCO (Check)
 - [x] Generate script for metrics, mainly SPICE and CIDEr
-- [ ] Research adding additional metrics, mainly METEOR or CLIPSCORE
-- [ ] Add parser to metrics to call out desired tests, not all 
+- [x] Research adding additional metrics, mainly METEOR or CLIPSCORE
+- [x] Add parser to metrics to call out desired tests, not all 
 
 **Initial Testing**
-- [ ] Fine tune scripts and prompting techniques for Gemma and Molmo
+- [x] Fine tune scripts and prompting techniques for Gemma and Molmo
 - [x] Run inference on both models with full set of images
 - [x] Find and compare base metrics for images
 
-**Ablation Study**
+**Ablation Study Setup**
 - [x] Currently gaussian blur, can consider alternatives.
 - [x] Script to apply gaussian blur to datasets and save as a new set of images, same imageID
 - [ ] Define solid ranges of gaussian blur to apply, without losing entire semantic meaning. 
 i.e 1%, 2%, 5%, 10% etc
 - [ ] Run inference on blurred dataset and compute metrics
+
+**Model Baseline Testing**
+
+
+
+
+**Ablation Study Testing**
+
+
+
+
+**Report**
 
 
 **After testing**
