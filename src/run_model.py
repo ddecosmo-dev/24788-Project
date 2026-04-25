@@ -3,7 +3,7 @@ import torch
 from transformers import AutoModelForImageTextToText, AutoModelForCausalLM, AutoProcessor, AutoConfig
 import os
 import sys
-from src.configs import MODEL_NAME, DATASET_PATH, ANNOTATIONS_PATH, RESULTS_PATH, MAX_NEW_TOKENS, PROMPT
+from src.model_configs import MODEL_NAME, DATASET_PATH, ANNOTATIONS_PATH, RESULTS_PATH, MAX_NEW_TOKENS, PROMPT
 import json
 from PIL import Image
 from pprint import pprint

@@ -1,0 +1,540 @@
+--- Prompt Experiment Summary ---
+Model: google/gemma-4-E4B-it
+Prompt: Describe this image in one brief sentence. Do not use conversational language.
+Number of Samples: 5
+
+--- Subset Metrics ---
+CIDEr: 0.6119
+
+--- Example ---
+Image File: 000000458755.jpg
+Model Generated: A young person kneels in a field of straw, petting a sheep while a white goat stands nearby.
+Ground Truths: 
+  - Young woman with sheep on straw covered floor.
+  - A child places his hands on the head and neck of a sheep while another sheep looks at his face.
+  - A person petting the head of a cute fluffy sheep.
+  - A child is petting a sheep while another sheep watches.
+  - A woman kneeling to pet animals while others wait. 
+
+==================================================
+--- Prompt Experiment Summary ---
+Model: google/gemma-4-E4B-it
+Prompt: Describe this image in one brief sentence. Do not use conversational language.
+Number of Samples: 5
+
+--- Subset Metrics ---
+CIDEr: 0.2873
+
+--- Example ---
+Image File: 000000442463.jpg
+Model Generated: A skateboarder in protective gear performs a trick in an outdoor skatepark under bright sunlight.
+Ground Truths: 
+  - A kid is riding down the street on a skateboard.
+  - A child in a helmet and safety pads riding a skateboard.
+  - A young kid in elbow and knee pads riding a skateboard.
+  - There is a young skateboarder riding his board
+  - Young person on the street skateboarding wearing a helmet.
+
+==================================================
+
+--- Prompt Experiment Summary ---
+Model: google/gemma-4-E4B-it
+Prompt: Describe this image in one brief sentence. Do not use conversational language.
+Number of Samples: 5
+
+--- Subset Metrics ---
+CIDEr: 0.5438
+
+--- Example ---
+Image File: 000000017207.jpg
+Model Generated: A yellow and white bus with Hindi script on the back is parked on a street next to a white van.
+Ground Truths: 
+  - A bus stuck in traffic on a busy highway.
+  - A bus with a flat tire sitting in traffic on a street.
+  - a yellow white and red bus lost a wheel 
+  - A passenger bus that is leaning to the right.
+  - A white bus with a flat tire sitting next to a bench.
+
+==================================================
+
+--- Prompt Experiment Summary ---
+Model: allenai/Molmo2-4B
+Prompt: Describe this image in one brief sentence. Do not use conversational language.
+Number of Samples: 5
+
+--- Subset Metrics ---
+CIDEr: 0.0857
+
+--- Example ---
+Image File: 000000261706.jpg
+Model Generated: A black and white cat is lounging on a brown couch, with a remote control and a patterned pillow visible in the background.
+Ground Truths: 
+  - A black and white cat laying on a couch.
+  - Black and white cat, with TV remote, laying on couch.
+  - A big cat laying down on a remote.
+  - A black and white cat hoarding the channel control on the couch.
+  - A black and white cat rests on a couch on top of a remote control.
+
+==================================================
+
+--- Prompt Experiment Summary ---
+Model: google/gemma-4-E4B-it
+Prompt: short caption: Describe this image in one brief sentence.
+Number of Samples: 5
+
+--- Subset Metrics ---
+CIDEr: 0.3699
+
+--- Example ---
+Image File: 000000007281.jpg
+Model Generated: Two riders on horseback gallop along a sandy beach under a partly cloudy sky.
+Ground Truths: 
+  - Two men smile as they ride horses on the beach.
+  - two guys horseback riding and playing on the beach.
+  - Two men are riding horses along the beach.
+  - Two people on horseback are posing while the horses gallop on a beach shore.
+  - Two people on horses on a beach readying for a picture
+
+==================================================
+
+--- Prompt Experiment Summary ---
+Model: allenai/Molmo2-4B
+Prompt: short caption: Describe this image in one brief sentence.
+Number of Samples: 5
+
+--- Subset Metrics ---
+CIDEr: 0.0080
+
+--- Example ---
+Image File: 000000521956.jpg
+Model Generated: A man is playing tennis on a blue court, holding a red and white racket in his right hand and raising his left arm. He's wearing a white shirt and has a microphone around his neck.
+Ground Truths: 
+  - I am unable to see an image above.
+  - A man in white shirt and wristbands playing tennis.
+  - A man swinging his racket at a ball. 
+  - There is a male tennis player that is going to serve the ball
+  - A man getting ready to serve the ball in a tennis game.
+
+==================================================
+
+--- Prompt Experiment Summary ---
+Model: google/gemma-4-E4B-it
+Prompt: Describe the image focusing on the most salient objects, their actions, and relationships. Keep it under 15 words.
+Number of Samples: 5
+
+--- Subset Metrics ---
+CIDEr: 0.3802
+
+--- Example ---
+Image File: 000000376900.jpg
+Model Generated: Tennis player celebrates a point on the court under bright sunlight.
+Ground Truths: 
+  - A tennis player prepares to serve a tennis ball.
+  - a tennis player in all white playing on a court 
+  - A tennis player is reaching up with one arm and has a racquet in the other hand. 
+  - The tennis player throws the ball up to serve
+  - Spectators watching a man swinging at a tennis ball.
+
+==================================================
+
+--- Prompt Experiment Summary ---
+Model: allenai/Molmo2-4B
+Prompt: Describe the image focusing on the most salient objects, their actions, and relationships. Keep it under 15 words.
+Number of Samples: 5
+
+--- Subset Metrics ---
+CIDEr: 0.2210
+
+--- Example ---
+Image File: 000000050828.jpg
+Model Generated: Two beds with white sheets and pillows. Desk with chair nearby. Window visible in corner.
+Ground Truths: 
+  - Two twin beds with no comforters on them.
+  - A hotel room bed with white linens, and a white desk beside it.
+  - A bedroom with two small beds right next to each other.
+  - A bedroom with two beds placed next to one another with a desk to one side and a small window on the opposite side.
+  - A white bed in a small hotel room
+
+==================================================
+
+--- Prompt Experiment Summary ---
+Model: google/gemma-4-E4B-it
+Prompt: Provide a COCO-style caption for this image.
+Number of Samples: 5
+
+--- Subset Metrics ---
+CIDEr: 0.2051
+
+--- Example ---
+Image File: 000000017031.jpg
+Model Generated: A close-up portrait of a giraffe looking directly at the camera in a lush, green outdoor environment.
+Ground Truths: 
+  - A very cute giraffe making a funny face.
+  - A giraffe's head looking at the camera and making a face.
+  - A portrait of a giraffe eating in a zoo.
+  - a giraffe is making a funny face at the camera
+  - A giraffe is coming up close to people
+
+==================================================
+
+--- Prompt Experiment Summary ---
+Model: allenai/Molmo2-4B
+Prompt: Provide a COCO-style caption for this image.
+Number of Samples: 5
+
+--- Subset Metrics ---
+CIDEr: 0.0000
+
+--- Example ---
+Image File: 000000231125.jpg
+Model Generated: In this vibrant street food scene, a woman in a red apron with white Chinese characters stands behind a bustling counter, preparing a variety of fried pastries. She holds a white bag in her right hand, ready to serve. The counter is laden with trays of golden-brown pastries, some dusted with powdered sugar, and a large silver bowl filled with oil. Behind her, another woman in a blue and white shirt is partially visible, adding to the lively atmosphere. The background features a neon sign with Chinese characters, casting a warm glow over the scene. The image captures the essence of a busy, authentic street food experience, with the rich textures and colors of the pastries and the vibrant energy of the setting.
+Ground Truths: 
+  - a person putting some pastries into a bag 
+  - A baker is placing their goods inside a bag.
+  - A person working at a store selling pasties.
+  - A person putting doughnuts into a bag in a shop.
+  - Pans of potatoes and a  person wearing a red apron in a commercial kitchen.
+
+==================================================
+
+--- Prompt Experiment Summary ---
+Model: google/gemma-4-E4B-it
+Prompt: Write a concise caption describing the main objects and actions in this image.
+Number of Samples: 5
+
+--- Subset Metrics ---
+CIDEr: 0.1175
+
+--- Example ---
+Image File: 000000259571.jpg
+Model Generated: A yellow bus is parked next to a flatbed truck loaded with several people wearing red caps, suggesting a group outing or transport.
+Ground Truths: 
+  - An orange truck driving down a street full of men in the back.
+  - A group of men are riding in the back of a dump truck.
+  - A group of people in the back of a dump-truck. 
+  - Bunch of people sitting in the back of a dump truck
+  - There are man lining the sides of the dumb truck.
+
+==================================================
+
+--- Prompt Experiment Summary ---
+Model: allenai/Molmo2-4B
+Prompt: Write a concise caption describing the main objects and actions in this image.
+Number of Samples: 5
+
+--- Subset Metrics ---
+CIDEr: 0.1315
+
+--- Example ---
+Image File: 000000085682.jpg
+Model Generated: A ski resort scene with a ski lift, skiers waiting in line, and a snowy mountain backdrop.
+Ground Truths: 
+  - people standing in line on a hill in snow gear
+  - People waiting in line for the Ski lift.
+  - The people are waiting to ski on the snowy mountain.
+  - A line of skiers waiting for the ski lift.
+  - There is a picture of an outside territory.
+
+
+==================================================
+
+--- Prompt Experiment Summary ---
+Model: google/gemma-4-E4B-it
+Prompt: Write a concise caption describing the main objects and actions in this image. Keep it under 15 words.
+Number of Samples: 5
+
+--- Subset Metrics ---
+CIDEr: 0.5243
+
+--- Example ---
+Image File: 000000010092.jpg
+Model Generated: Large canopy bed dominates a warmly lit, rustic room with many windows.
+Ground Truths: 
+  - A green netted bed in a light filled bedroom.
+  - Bed covered in mosquito netting in a bedroom with windows on three walls.
+  - A bed in a hut covered in a bug net.
+  - A bed with lots of pillows and blankets under a canopy.
+  - Bed in room with candles covered by a mosquito net
+
+==================================================
+
+--- Prompt Experiment Summary ---
+Model: allenai/Molmo2-4B
+Prompt: Write a concise caption describing the main objects and actions in this image. Keep it under 15 words.
+Number of Samples: 5
+
+--- Subset Metrics ---
+CIDEr: 0.3729
+
+--- Example ---
+Image File: 000000177065.jpg
+Model Generated: Children playing tennis with a coach on a blue court.
+Ground Truths: 
+  - Children and an adult on a tennis court. 
+  - a couplee of kids are playing on a tennis court
+  - A bunch of people are looking over a tennis volley net while a young boy wearing glasses is bouncing a tennis ball 
+  - A man teaching young people how to play tennis.
+  - The children are learning how to play tennis.
+
+==================================================
+
+--- Prompt Experiment Summary ---
+Model: google/gemma-4-E4B-it
+Prompt: Describe the image in one short sentence. No extra details.
+Number of Samples: 5
+
+--- Subset Metrics ---
+CIDEr: 0.4645
+
+--- Example ---
+Image File: 000000255824.jpg
+Model Generated: A slice of cake with chocolate glaze sits on a white plate next to a white mug.
+Ground Truths: 
+  - A chocolate frosted doughnut sitting on top of a plate.
+  - Half an eclair on a plate and a coffee mug on wooden table.
+  - A half eaten eclaire on a white plate
+  - A portion of this chocolate pastry has been eaten.
+  - A doughnut with a bite taken from it next to a cup.
+
+==================================================
+
+--- Prompt Experiment Summary ---
+Model: allenai/Molmo2-4B
+Prompt: Describe the image in one short sentence. No extra details.
+Number of Samples: 5
+
+--- Subset Metrics ---
+CIDEr: 0.1338
+
+--- Example ---
+Image File: 000000453302.jpg
+Model Generated: The image shows a small, cluttered kitchen with white walls, a brown countertop, and a red door with a glass window.
+Ground Truths: 
+  - A kitchen that has a tile floor, a refrigerator, a microwave, and a toaster.
+  - a kitchen with a refrigerator a microwave and a toaster
+  - A workplace break room kitchenette, with refrigerator, two microwave ovens, a toaster and sink.
+  - The kitchen has a refrigerator, toaster, and microwaves.
+  - A break room kitchen is shown with two microwaves.
+
+==================================================
+
+--- Prompt Experiment Summary ---
+Model: google/gemma-4-E4B-it
+Prompt: Describe the image in one short sentence. No extra details. 12 words max.
+Number of Samples: 5
+
+--- Subset Metrics ---
+CIDEr: 0.9165
+
+--- Example ---
+Image File: 000000228214.jpg
+Model Generated: A man in a military uniform looks at his smartphone outdoors.
+Ground Truths: 
+  - A Marine that is looking at his cell phone.
+  - A marine in uniform using a smart phone.
+  - A full dressed marine is looking at his cell phone.
+  - A man in uniform is looking at his phone.
+  - A service man is looking at his cel phone.
+
+==================================================
+
+--- Prompt Experiment Summary ---
+Model: google/gemma-4-E4B-it
+Prompt: Describe the image in one short sentence. No extra details. 10 words max.
+Number of Samples: 5
+
+--- Subset Metrics ---
+CIDEr: 0.8368
+
+--- Example ---
+Image File: 000000217060.jpg
+Model Generated: A small aircraft flies beneath a tall white contrail.
+Ground Truths: 
+  - The airplane is flying near a cloud in the sky. 
+  - A prop plane is flying through the sky.
+  - a small air plane flying in the sky
+  - a airplane that is flying through the sky
+  - A propeller plane that is flying in the air.
+
+==================================================
+
+--- Prompt Experiment Summary ---
+Model: google/gemma-4-E4B-it
+Prompt: Describe the image in one short sentence. No extra details. 12 words max.
+Number of Samples: 100
+
+--- Subset Metrics ---
+CIDEr: 0.5130
+
+--- Example ---
+Image File: 000000342971.jpg
+Model Generated: A man throws a frisbee outdoors on a bright, clear day.
+Ground Truths: 
+  - A man catching a green Frisbee next to a  field.
+  - Man in green sweatshirt about to catch a frisbee.
+  - A man wearing sunglasses and a coat catching a frisbee.
+  - A boy outside reaching to catch a frisbee.
+  - A man reaching out to catch a frisbee.
+
+==================================================
+
+--- Prompt Experiment Summary ---
+Model: google/gemma-4-E4B-it
+Prompt: Describe the image in one short sentence. No extra details. 12 words max.
+Number of Samples: 100
+
+--- Subset Metrics ---
+CIDEr: 0.4402
+
+--- Example ---
+Image File: 000000100428.jpg
+Model Generated: Two men in white shirts playfully engage with a dark, horizontal object.
+Ground Truths: 
+  - A man is grabbing the tie of another person that appears in the mirror.
+  - there are two men that are pulling their ties
+  - A man pulling himself out of a mirror by his own tie.
+  - two men with ties taking a creepy looking photo
+  - Two men accidentally get their ties too tied up
+
+==================================================
+
+--- Prompt Experiment Summary ---
+Model: allenai/Molmo2-4B
+Prompt: Describe the image in one short sentence. No extra details. 12 words max.
+Number of Samples: 5
+
+--- Subset Metrics ---
+CIDEr: 0.4735
+
+--- Example ---
+Image File: 000000005586.jpg
+Model Generated: A woman in a yellow shirt and black shorts plays tennis on a blue court.
+Ground Truths: 
+  - a tennis player with a racket on a court 
+  - Indoor tennis match, with a full crowd of spectators.
+  - A man standing on a tennis court holding a racquet.
+  - A tennis player in a crowded arena waits for the next volley.
+  - a man playing tennis hits a ball across the court
+
+==================================================
+
+--- Prompt Experiment Summary ---
+Model: allenai/Molmo2-4B
+Prompt: Describe the image in one short sentence. No extra details. 12 words max.
+Number of Samples: 5
+
+--- Subset Metrics ---
+CIDEr: 0.3580
+
+--- Example ---
+Image File: 000000534827.jpg
+Model Generated: Four helmeted riders on motorcycles travel left on a bridge at sunset.
+Ground Truths: 
+  - a group of young men are riding their motocycles down the street
+  - five men riding their motor cycles on the street
+  - Motorcyclists are riding down the street with each other.
+  - Five people riding some motorbikes on the road
+  - People are riding on motorcycles together down a street.
+
+==================================================
+
+--- Prompt Experiment Summary ---
+Model: allenai/Molmo2-4B
+Prompt: Describe the image in one short sentence. No extra details. 10 words max.
+Number of Samples: 5
+
+--- Subset Metrics ---
+CIDEr: 0.4118
+
+--- Example ---
+Image File: 000000212226.jpg
+Model Generated: Woman in yellow truck, smiling through side mirror.
+Ground Truths: 
+  - A person in a the reflection of a truck mirror.
+  - A reflection of a woman driving a truck.
+  - The reflection of a women in a mirror.
+  - A girl sitting in a truck is reflected in a mirror. 
+  - Women worker looking at rear view mirror smiling
+
+==================================================
+
+--- Prompt Experiment Summary ---
+Model: allenai/Molmo2-4B
+Prompt: Describe the image in one short sentence. No extra details. 10 words max.
+Number of Samples: 5
+
+--- Subset Metrics ---
+CIDEr: 0.5117
+
+--- Example ---
+Image File: 000000128372.jpg
+Model Generated: Orange Metro Local bus at station with passengers waiting to board.
+Ground Truths: 
+  - People loading onto a orange and silver metro bus.
+  - people walking towards a parked bus on the street
+  - a yellow white and black bus and some people 
+  - A transit bus with its doors opened as passengers board.
+  - People milling about a bus terminal getting ready to board.
+
+==================================================
+
+--- Prompt Experiment Summary ---
+Model: allenai/Molmo2-4B
+Prompt: Describe the image in one short sentence. No extra details. 10 words max.
+Number of Samples: 100
+
+--- Subset Metrics ---
+CIDEr: 0.5361
+
+--- Example ---
+Image File: 000000267946.jpg
+Model Generated: A blue sign with white text and symbols indicating a public toilet 150 meters away.
+Ground Truths: 
+  - A blue sign giving directions to a public toilet.
+  - A sign for a public restroom is in more than one language.
+  - a blue sign for a public toilet with arrows and figures
+  - A street sign points in the direction of the bathroom.
+  - A blue sign that is pointing to the restrooms.
+
+==================================================
+
+--- Prompt Experiment Summary ---
+Model: allenai/Molmo2-4B
+Prompt: Describe the image in one short sentence. No extra details. 10 words max.
+Number of Samples: 100
+
+--- Subset Metrics ---
+CIDEr: 0.4785
+
+--- Example ---
+Image File: 000000099039.jpg
+Model Generated: A cozy restaurant scene with pizza, wine, and a view of the city.
+Ground Truths: 
+  - Plates  of food and glasses of wine sitting on a table
+  - a table thath as some pizza and wine on it
+  - A couple glasses of wine sitting on a table of food.
+  - Plates of food and two glasses of red wine are on a table.
+  - there are two pizzaa and two glasses of wine on the table
+
+==================================================
+
+--- Prompt Experiment Summary ---
+Model: allenai/Molmo2-4B
+Prompt: Describe the image in one short sentence. No extra details. 10 words max.
+Number of Samples: 5
+
+--- Subset Metrics ---
+CIDEr: 0.5322
+
+--- Example ---
+Image File: 000000556873.jpg
+Model Generated: A three-tiered white cake with green accents sits in a grassy field.
+Ground Truths: 
+  - A cake that is sitting in the grass.
+  - A white frosted cake sitting in front of some white flowers.
+  - A cake is sitting in the grass in front of white flowers.
+  - A cake laying on the ground near flowers.
+  - a white cake is by a bunch of flowers
+
+==================================================
+
