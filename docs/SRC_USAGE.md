@@ -21,9 +21,10 @@ This script uses `src/configs.py` and expects the following data/results layout:
 
 ```bash
 python src/model-metrics.py \
-  --json_path results/model-results/gemma-4-E4B-it_results_.json \
-  --model gemma \
-  --test COCO_val
+    --json_path results/model-results/gemma-4-E4B-it_results_.json \
+    --image_dir data/coco-dataset/val2017 \
+    --model gemma-4b \
+    --metrics cider spice meteor clip_score
 ```
 
 This will compute CIDEr and SPICE from a caption results JSON file.
@@ -54,11 +55,26 @@ To generate ablation data, in this case motion blur, the ```generate_motion_blur
 
 **NOTE:** The kernel size for motion blur should be odd.
 
-```python src/generate_motion_blur.py --input_dir data/coco-dataset/val2017 --output_dir data/ablation-datasets/blur_low --kernel_size 7```
+```python src/create-ablation-data.py \
+--input_dir data/coco-dataset/val2017 \
+--output_dir data/ablation-datasets/k7 \
+--type motion_blur \
+--kernel_size 7 \
+  #only use for testing, for full test omit 
+--num_images 50 \
+--seed 42
+```
 
-```python src/generate_motion_blur.py --input_dir data/coco-dataset/val2017 --output_dir data/ablation-datasets/blur_med --kernel_size 15```
+```python src/create-ablation-data.py \
+--input_dir data/coco-dataset/val2017 \
+--output_dir data/ablation-datasets/noise15 \
+--type gaussian_noise \
+--noise_std 15 \
+--num_images 5 \
+--seed 42
+```
 
-```python src/generate_motion_blur.py --input_dir data/coco-dataset/val2017 --output_dir data/ablation-datasets/blur_high --kernel_size 31```
+
 
 ## Importing `src` modules from notebooks
 

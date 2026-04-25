@@ -1,74 +1,98 @@
-import cv2 as cv
-import numpy as np
 import os
-from model_configs import DATASET_PATH
+import cv2
+import argparse
+import random
+import numpy as np
+import albumentations as A
+from tqdm import tqdm
 
-# ----- Configs ----- #
-OUTPUT_DIR = "../data/coco/ablation-datasets/" + ABLATION_TYPE # Path to the output directory for ablation images
-
-#lets convert this to a parser!
-
-
-ABLATION_TYPE = "motion_blur" # or "gaussian_noise"
-
-# Motion blur parameters
-MOTION_BLUR_KERNEL_SIZE = 15
-MOTION_BLUR_ANGLE = 45
-
-# Gaussian noise parameters
-GAUSSIAN_NOISE_MEAN = 0
-GAUSSIAN_NOISE_STDDEV = 25
-
-# ----- Motion Blur ----- #
-def apply_motion_blur(image, kernel_size=15, angle=0):
-    # Create the motion blur kernel
-    kernel = np.zeros((kernel_size, kernel_size), dtype=np.float32)
-    kernel[int((kernel_size - 1) / 2), :] = np.ones(kernel_size, dtype=np.float32)
-    kernel /= kernel_size
-
-    # Rotate the kernel to the specified angle
-    M = cv.getRotationMatrix2D((kernel_size / 2, kernel_size / 2), angle, 1)
-    kernel = cv.warpAffine(kernel, M, (kernel_size, kernel_size))
-
-    # Apply the motion blur to the image
-    blurred = cv.filter2D(image, -1, kernel)
-
-    return blurred
-
-# ----- Noise Addition ----- #
 def add_gaussian_noise(image, mean=0, stddev=25):
-    # Generate Gaussian noise
+    """
+    Applies Gaussian noise to each pixel based on a normal distribution.
+    """
     noise = np.random.normal(mean, stddev, image.shape).astype(np.float32)
+    noisy_image = cv2.add(image.astype(np.float32), noise)
+    return np.clip(noisy_image, 0, 255).astype(np.uint8)
 
-    # Add the noise to the image
-    noisy_image = cv.add(image.astype(np.float32), noise)
+def main():
+    parser = argparse.ArgumentParser(description="Consolidated Ablation Dataset Generator")
+    
+    # Path Arguments
+    parser.add_argument('--input_dir', type=str, required=True, 
+                        help="Path to clean images (e.g., data/coco-dataset/val2017)")
+    parser.add_argument('--output_dir', type=str, required=True, 
+                        help="Path to save processed images")
+    
+    # Ablation Selection
+    parser.add_argument('--type', type=str, choices=['motion_blur', 'gaussian_noise'], 
+                        default='motion_blur', help="Type of ablation to apply")
+    
+    # Parameter Arguments
+    parser.add_argument('--kernel_size', type=int, default=15, 
+                        help="Motion blur kernel size (odd integer >= 3)")
+    parser.add_argument('--noise_mean', type=float, default=0.0, 
+                        help="Mean for Gaussian noise")
+    parser.add_argument('--noise_std', type=float, default=25.0, 
+                        help="Standard deviation for Gaussian noise")
 
-    # Clip the values to be in the valid range [0, 255]
-    noisy_image = np.clip(noisy_image, 0, 255).astype(np.uint8)
+    # Sampling Arguments
+    parser.add_argument('--num_images', type=int, default=None,
+                        help="Number of images to randomly sample and process. If not set, processes all.")
+    parser.add_argument('--seed', type=int, default=None,
+                        help="Random seed for reproducible sampling. Only used if --num_images is set.")
 
-    return noisy_image
+    args = parser.parse_args()
 
-# ----- Create Ablation Datasets ----- #
-def create_ablation_data(input_dir, output_dir, ablation_type="motion_blur"):
-    if not os.path.exists(output_dir):
-        os.makedirs(output_dir)
+    # 1. Validation & Setup
+    if not os.path.exists(args.input_dir):
+        raise FileNotFoundError(f"Input directory not found: {args.input_dir}")
+    
+    if args.type == 'motion_blur' and (args.kernel_size < 3 or args.kernel_size % 2 == 0):
+        raise ValueError(f"Kernel size must be an odd integer >= 3. Provided: {args.kernel_size}")
 
-    for filename in os.listdir(input_dir):
-        if filename.endswith(('.jpg', '.jpeg', '.png')):
-            image_path = os.path.join(input_dir, filename)
-            image = cv.imread(image_path)
+    os.makedirs(args.output_dir, exist_ok=True)
 
-            if ablation_type == "motion_blur":
-                processed_image = apply_motion_blur(image, kernel_size=MOTION_BLUR_KERNEL_SIZE, angle=MOTION_BLUR_ANGLE)
-                output_filename = f"{os.path.splitext(filename)[0]}_blurred.jpg"
-            elif ablation_type == "gaussian_noise":
-                processed_image = add_gaussian_noise(image, mean=GAUSSIAN_NOISE_MEAN, stddev=GAUSSIAN_NOISE_STDDEV)
-                output_filename = f"{os.path.splitext(filename)[0]}_noisy.jpg"
+    # 2. Setup Motion Blur Transform
+    blur_transform = A.Compose([
+        A.MotionBlur(blur_limit=(args.kernel_size, args.kernel_size), allow_shifted=True, p=1.0)
+    ])
+
+    # 3. Identify, Sort, and Sample Images
+    image_files = [f for f in os.listdir(args.input_dir) if f.lower().endswith(('.png', '.jpg', '.jpeg'))]
+    
+    # CRITICAL: Sort files so the list is identical every time before sampling
+    image_files.sort() 
+    
+    # Apply Sampling Logic
+    if args.num_images is not None:
+        if args.num_images >= len(image_files):
+            print(f"Note: --num_images ({args.num_images}) is >= available images ({len(image_files)}). Using all.")
+        else:
+            # Apply seed for reproducibility
+            if args.seed is not None:
+                random.seed(args.seed)
+                print(f"Sampling {args.num_images} images with seed {args.seed}...")
             else:
-                continue
+                print(f"Sampling {args.num_images} images randomly...")
+            
+            image_files = random.sample(image_files, args.num_images)
 
-            # Save the processed images
-            cv.imwrite(os.path.join(output_dir, output_filename), processed_image)
+    # 4. Process Images
+    print(f"Applying {args.type} to {len(image_files)} images...")
+
+    for filename in tqdm(image_files, desc="Processing", unit="img"):
+        img = cv2.imread(os.path.join(args.input_dir, filename))
+        if img is None: continue
+
+        if args.type == 'motion_blur':
+            processed = blur_transform(image=img)["image"]
+        else:
+            processed = add_gaussian_noise(img, mean=args.noise_mean, stddev=args.noise_std)
+
+        # Save at 100 quality
+        cv2.imwrite(os.path.join(args.output_dir, filename), processed, [cv2.IMWRITE_JPEG_QUALITY, 100])
+
+    print(f"\n Dataset saved to: {args.output_dir}")
 
 if __name__ == "__main__":
-    create_ablation_data(DATASET_PATH, OUTPUT_DIR, ABLATION_TYPE)
+    main()
