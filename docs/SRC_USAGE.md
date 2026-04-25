@@ -21,9 +21,10 @@ This script uses `src/configs.py` and expects the following data/results layout:
 
 ```bash
 python src/model-metrics.py \
-  --json_path results/model-results/gemma-4-E4B-it_results_.json \
-  --model gemma \
-  --test COCO_val
+    --json_path results/model-results/gemma-4-E4B-it_results_.json \
+    --image_dir data/coco-dataset/val2017 \
+    --model gemma-4b \
+    --metrics cider spice meteor clip_score
 ```
 
 This will compute CIDEr and SPICE from a caption results JSON file.
