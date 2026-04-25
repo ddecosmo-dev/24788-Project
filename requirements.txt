@@ -18,5 +18,10 @@ pandas
 matplotlib
 seaborn
 ipykernel
-clip 
 nltk
+
+# --- CLIPScore Dependencies ---
+ftfy
+regex
+tqdm
+clip @ git+https://github.com/openai/CLIP.git
