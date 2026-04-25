@@ -1,4 +1,4 @@
-Image_ID,Generated_Caption,CIDER_Score,SPICE_Score,METEOR_Score,CLIP_SCORE_Score
+Image_ID,Generated_Caption,CIDEr_Score,SPICE_Score,METEOR_Score,CLIP_SCORE_Score
 000000456865.jpg,A China Eastern Airlines passenger jet is visible on an airport tarmac under a partly cloudy sky.,0.0611,0.1579,0.1685,0.2996
 000000435003.jpg,"A modern, industrial-style office space features a desk with multiple computea r monitors and a laptop, set against raw concrete wall.",0.0828,0.0588,0.5773,0.3105
 000000084431.jpg,A slice of ham and cheese pizza rests on a plate in a room with a television in the background.,0.5749,0.2273,0.4748,0.3555

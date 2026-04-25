@@ -124,8 +124,15 @@ def main():
     os.makedirs(output_dir, exist_ok=True)
     output_filename = os.path.join(output_dir, f"{args.model}_{args.test}_{timestamp}.csv")
     
+    metric_name_map = {
+        'cider': 'CIDEr_Score',
+        'spice': 'SPICE_Score',
+        'meteor': 'METEOR_Score',
+        'clip_score': 'CLIPScore_Score'
+    }
+    
     # Dynamically build header based on metrics selected
-    header = ["Image_ID", "Generated_Caption"] + [m.upper() + "_Score" for m in args.metrics]
+    header = ["Image_ID", "Generated_Caption"] + [metric_name_map[m] for m in args.metrics]
     
     print(f"Saving per-image metrics to {output_filename}...")
     with open(output_filename, mode='w', newline='', encoding='utf-8') as csv_file:
