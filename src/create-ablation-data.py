@@ -4,8 +4,12 @@ import os
 from model_configs import DATASET_PATH
 
 # ----- Configs ----- #
-ABLATION_TYPE = "motion_blur" # or "gaussian_noise"
 OUTPUT_DIR = "../data/coco/ablation-datasets/" + ABLATION_TYPE # Path to the output directory for ablation images
+
+#lets convert this to a parser!
+
+
+ABLATION_TYPE = "motion_blur" # or "gaussian_noise"
 
 # Motion blur parameters
 MOTION_BLUR_KERNEL_SIZE = 15
