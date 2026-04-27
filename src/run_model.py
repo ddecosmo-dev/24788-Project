@@ -3,7 +3,7 @@ import torch
 from transformers import AutoModelForImageTextToText, AutoModelForCausalLM, AutoProcessor, AutoConfig
 import os
 import sys
-from src.model_configs import MODEL_NAME, DATASET_PATH, ANNOTATIONS_PATH, RESULTS_PATH, MAX_NEW_TOKENS, PROMPT
+from model_configs import MODEL_NAME, DATASET_PATH, ANNOTATIONS_PATH, RESULTS_PATH, MAX_NEW_TOKENS, PROMPT
 import json
 from PIL import Image
 from pprint import pprint
@@ -147,8 +147,8 @@ def generate_text(model, processor, image, prompt, max_length=50):
         with torch.no_grad():
             generated_ids = model.generate(**inputs, do_sample=False, max_new_tokens=MAX_NEW_TOKENS)
         
-        generated_text = processor.decode(generated_ids[0][input_len:], skip_special_tokens=False)
-
+        generated_text = processor.decode(generated_ids[0][input_len:], skip_special_tokens=True)
+        generated_text = generated_text.replace("<turn|>", "").strip()
         
     return generated_text
 
