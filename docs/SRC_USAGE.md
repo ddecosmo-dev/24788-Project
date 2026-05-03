@@ -64,11 +64,11 @@ To generate ablation data, in this case motion blur, the ```generate_motion_blur
 --seed 42
 ```
 
-```python src/create-ablation-data.py \
+```python3 src/create-ablation-data.py \
 --input_dir data/coco-dataset/val2017 \
 --output_dir data/ablation-datasets/noise15 \
 --type gaussian_noise \
---noise_std 15 \
+--noise_std 240 \
 --num_images 5 \
 --seed 42
 ```
