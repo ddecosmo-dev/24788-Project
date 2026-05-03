@@ -2,6 +2,22 @@
 
 Project comparing the performance of mulit-modal models in generating image captions. 
 
+
+## Reproduction instructions
+
+Make a python environment using the 
+reproduce-requirements.txt file in the repo.
+
+Use this environment to run the reproduce-results.ipynb notebook
+
+
+## AI Usage
+
+AI was used throughout this project to prototype code and create code.
+AI was not used to define the project, select models, select metrics, analyze, or write any information in the reprort.
+All conclusions and analyses are those of the authors. 
+
+
 ### Env setup
 
 make virtual env
@@ -90,17 +106,15 @@ Could also be done for ablation study as images degrade.
 Image examples in /viz 
 
 **Model Baseline Testing**
-- [ ] Run initial model testing
-- [ ] Perform Data analysis
-- [ ] Save figures and Results
+- [x] Run initial model testing
+- [x] Perform Data analysis
+- [x] Save figures and Results
  
 
 **Ablation Study Testing**
-- [ ] Create ablation datasets
-- [ ] Run inference on ablation datasets
-- [ ] Data analysis on ablation and between ablation models
-- [ ] Model comparison notebook!
+- [x] Create ablation datasets
+- [x] Run inference on ablation datasets
+- [x] Data analysis on ablation and between ablation models
+- [x] Model comparison notebook!
 
-
-**Report**
 
