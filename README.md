@@ -118,3 +118,7 @@ Image examples in /viz
 - [x] Model comparison notebook!
 
 
+Repo Improvements:
+Change title, talk to Victor
+Check data organization. Consider making updates
+Rework README extensively to go over the point of the project, include results from report
